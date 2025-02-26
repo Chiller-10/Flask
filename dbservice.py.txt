@@ -1,0 +1,30 @@
+import mysql.connector
+from rich import print
+
+def createConnection():
+    conn = mysql.connector.connect(
+        host = "localhost",     port = 3306,          user="Kavina",        
+        password="Kavina@25",   database = "Eshop",   auth_plugin='mysql_native_password')
+    conn.autocommit = True
+    return conn
+
+def formatter(cursor, data):  
+    result = []
+    for row in data:
+        row_dict = {}
+        for idx, column in enumerate(cursor.description):
+            row_dict[column[0]] = row[idx]
+        result.append(row_dict)
+    return result
+
+
+def fetchDataDB(id):
+    print(id)
+    conn = createConnection()
+    cursor = conn.cursor()
+    if int(id)<=2 and int(id)<=1:
+        cursor.execute(f"select * from Customer where id = {id}")
+    else:
+        cursor.execute(f"select * from Empt")
+    data = cursor.fetchall()
+    return formatter(cursor, data)
