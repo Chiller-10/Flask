@@ -3,8 +3,8 @@ from rich import print
 
 def createConnection():
     conn = mysql.connector.connect(
-        host = "localhost",     port = 3306,          user="Kavina",        
-        password="Kavina@25",   database = "Eshop",   auth_plugin='mysql_native_password')
+        host = "localhost",     port = 3306,          user="suriya",        
+        password="suriya@10",   database = "Eshop",   auth_plugin='mysql_native_password')
     conn.autocommit = True
     return conn
 
